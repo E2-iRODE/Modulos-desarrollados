@@ -1,0 +1,29 @@
+
+
+<odoo>
+
+    <record id="view_task_kanban_fsm_state_colors" model="ir.ui.view">
+    <field name="name">project.task.kanban.fsm.state.colors</field>
+    <field name="model">project.task</field>
+    <field name="inherit_id" ref="industry_fsm.project_task_view_kanban_fsm"/>
+    <field name="arch" type="xml">
+        
+     <xpath expr="//t[@t-name='kanban-box']/div" position="attributes">
+        <attribute name="t-attf-style">
+
+{{ record.stage_id.value == 'Realizado'      ? 'background-color: #5cb85c !important; color: #2f4f2f !important;' : '' }}
+{{ record.stage_id.value == 'Cancelado'  ? 'background-color: #ff8b94 !important; color: #4a1a1a !important;' : '' }}
+{{ record.stage_id.value == 'En Progreso'? 'background-color: #ffd3b6 !important; color: #7a3f1a !important;' : '' }}
+{{ record.stage_id.value == 'Planeado'   ? 'background-color: #fff1a8 !important; color: #4a4a2f !important;' : '' }}
+{{ record.stage_id.value == 'Nuevo'      ? 'background-color: #e0e0e0 !important; color: #5a5a5a !important;' : '' }}
+        </attribute>
+      </xpath>
+
+
+
+
+
+    </field>
+</record>
+ 
+</odoo>

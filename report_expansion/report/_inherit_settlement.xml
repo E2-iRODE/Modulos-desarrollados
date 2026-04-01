@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="paperformat_settlement_expenses_landscape" model="report.paperformat">
+        <field name="name">Liquidación - A4</field>
+      
+        <field name="orientation">Landscape</field>
+        <field name="margin_top">45</field>
+<field name="header_spacing">42</field><field name="margin_top">45</field>
+<field name="header_spacing">42</field>
+        
+    </record>
+
+    <record id="settlement_expenses.action_report_settlement_expenses_pdf" model="ir.actions.report">
+        <field name="paperformat_id" ref="paperformat_settlement_expenses_landscape"/>
+    </record>
+
+    <template
+        id="report_settlement_expenses_document_custom"
+        inherit_id="settlement_expenses.report_settlement_expenses_document">
+
+     <xpath expr="//div[@style='height:15mm;']" position="replace">
+    <div style="height:0; margin-top:-50px;"></div>
+</xpath>
+
+
+
+        
+        <xpath expr="//table[@class='se-table'][1]/thead/tr" position="replace">
+            <tr>
+                <th style="width:10%;">Factura</th>
+                <th style="width:11%;">Proveedor</th>
+                <th style="width:7%;">Fecha</th>
+                <th style="width:8%;">NIT</th>
+                <th style="width:16%;">Descripción</th>
+                <th style="width:7%;">Serie</th>
+                <th style="width:9%;">No. Doc.</th>
+                <th style="width:12%;">Diario</th>
+                <th style="width:6%;">Estado</th>
+                <th style="width:5%;" class="se-right">Moneda</th>
+                <th style="width:9%;" class="se-right">Total</th>
+            </tr>
+        </xpath>
+
+        
+        <xpath expr="//table[@class='se-table'][1]/tbody" position="replace">
+            <tbody>
+                <t t-if="o.invoice_id">
+                    <t t-foreach="o.invoice_id" t-as="inv">
+                        <tr>
+                            <td class="se-nowrap">
+                                <span t-esc="inv.name or inv.ref or inv.payment_reference or ''"/>
+                            </td>
+                            <td class="se-wrap-any">
+                                <span t-esc="inv.partner_id.name or ''"/>
+                            </td>
+                            <td class="se-nowrap">
+                                <span t-esc="inv.invoice_date or inv.date or ''"/>
+                            </td>
+                            <td class="se-nowrap">
+                                <span t-esc="inv.partner_id.vat or '-'"/>
+                            </td>
+                            <td class="se-wrap-any">
+                                <span t-esc="inv.ref or '-'"/>
+                            </td>
+                            <td class="se-nowrap">
+                                <span t-esc="inv.provider_invoice_serial or '-'"/>
+                            </td>
+                            <td class="se-nowrap">
+                                <span t-esc="inv.provider_invoice_number or '-'"/>
+                            </td>
+                            <td class="se-wrap-any">
+                                <span t-esc="inv.journal_id.display_name or ''"/>
+                            </td>
+                            <td class="se-nowrap">
+                                <span t-esc="inv.state"/>
+                            </td>
+                            <td class="se-right se-nowrap">
+                                <span t-esc="inv.currency_id.name"/>
+                            </td>
+                            <td class="se-right se-nowrap">
+                                <span t-field="inv.amount_total"
+                                      t-options="{'widget': 'monetary', 'display_currency': inv.currency_id}"/>
+                            </td>
+                        </tr>
+                    </t>
+                </t>
+                <t t-else="">
+                    <tr>
+                        <td colspan="11" class="se-muted">Sin facturas asociadas.</td>
+                    </tr>
+                </t>
+            </tbody>
+        </xpath>
+
+    </template>
+
+</odoo>

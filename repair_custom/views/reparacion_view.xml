@@ -1,0 +1,56 @@
+
+
+<odoo>
+<record id="view_repair_order_form_inherit_filter" model="ir.ui.view">
+        <field name="name">repair.order.form.filter.product</field>
+        <field name="model">repair.order</field>
+        <field name="inherit_id" ref="repair.view_repair_order_form"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//form" position="inside">
+                <field name="compatible_products" invisible="1"/>
+            </xpath>
+
+            <xpath expr="//field[@name='move_ids']//field[@name='product_id']" position="attributes">
+                <attribute name="domain">[('id', 'in', parent.compatible_products)]</attribute>
+            </xpath>
+
+            <xpath expr="//field[@name='partner_id']" position="after">
+                <field name="seleccion_reparacion" />
+            </xpath>
+
+            <xpath expr="//field[@name='product_id']" position="attributes">
+                <attribute name="invisible">seleccion_reparacion</attribute>
+            </xpath>
+
+            <xpath expr="//field[@name='product_id']" position="after">
+                <field name="vehiculo_id" invisible="not seleccion_reparacion"/>
+            </xpath>
+            <xpath expr="//field[@name='user_id']" position="replace">
+                <field name="user_id" widget="many2many_tags"/>
+
+
+            </xpath>
+
+        <xpath expr="//field[@name='vehiculo_id']" position="after">
+        <field name="modelo_inf" invisible="not vehiculo_id or not seleccion_reparacion"/>
+        <field name="model_year_inf" invisible="not vehiculo_id or  not seleccion_reparacion"/>
+        <field name="model_color_inf" invisible="not vehiculo_id or not seleccion_reparacion"/>
+        <field name="license_plate_inf" invisible="not vehiculo_id or not seleccion_reparacion"/>
+        </xpath>
+
+         <xpath expr="//field[@name='product_id']" position="after">
+        <field name="modelo_inf_prod" invisible="not product_id or seleccion_reparacion"/>
+        <field name="marca_inf" invisible="not product_id or   seleccion_reparacion"/>
+        <field name="linea_inf" invisible="not product_id or  seleccion_reparacion"/>
+       
+        </xpath>
+
+
+
+
+
+        </field>
+
+    </record>
+</odoo>

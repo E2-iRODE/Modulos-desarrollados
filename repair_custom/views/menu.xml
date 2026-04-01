@@ -1,0 +1,120 @@
+<odoo>
+    <record id="product_marca_view_form" model="ir.ui.view">
+        <field name="name">product.marca.view.form</field>
+        <field name="model">product.marca</field>
+        <field name="arch" type="xml">
+            <form string="Marca">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="product_marca_view_tree" model="ir.ui.view">
+        <field name="name">product.marca.view.tree</field>
+        <field name="model">product.marca</field>
+        <field name="arch" type="xml">
+            <tree string="Marcas">
+                <field name="name"/>
+            </tree>
+        </field>
+    </record> <record id="action_marca_product" model="ir.actions.act_window">
+        <field name="name">Marcas</field>
+        <field name="res_model">product.marca</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+<record id="product_model_view_form" model="ir.ui.view">
+    <field name="name">product.model.view.form</field>
+    <field name="model">product.model</field>
+    <field name="arch" type="xml">
+        <form string="Modelo">
+            <sheet>
+                <group>
+                    <field name="name"/>
+                </group>
+            </sheet>
+        </form>
+    </field>
+</record>
+
+<record id="product_model_view_tree" model="ir.ui.view">
+    <field name="name">product.model.view.tree</field>
+    <field name="model">product.model</field>
+    <field name="arch" type="xml">
+        <tree string="Modelos">
+            <field name="name"/>
+        </tree>
+    </field>
+</record>
+
+<record id="action_product_model" model="ir.actions.act_window">
+    <field name="name">Modelos de Producto</field>
+    <field name="res_model">product.model</field>
+    <field name="view_mode">tree,form</field>
+</record>
+
+
+
+
+<record id="product_linea_view_form" model="ir.ui.view">
+    <field name="name">product.linea.view.form</field>
+    <field name="model">product.linea</field>
+    <field name="arch" type="xml">
+        <form string="Línea">
+            <sheet>
+                <group>
+                    <field name="name"/>
+                </group>
+            </sheet>
+        </form>
+    </field>
+</record>
+
+<record id="product_linea_view_tree" model="ir.ui.view">
+    <field name="name">product.linea.view.tree</field>
+    <field name="model">product.linea</field>
+    <field name="arch" type="xml">
+        <tree string="Líneas">
+            <field name="name"/>
+        </tree>
+    </field>
+</record>
+
+<record id="action_product_linea" model="ir.actions.act_window">
+    <field name="name">Líneas de Producto</field>
+    <field name="res_model">product.linea</field>
+    <field name="view_mode">tree,form</field>
+</record>
+
+
+
+
+ <menuitem id="menu_root" 
+              name="Gestionar" 
+              parent="stock.menu_stock_config_settings" 
+              action="action_marca_product" 
+              sequence="5"/>
+
+ <menuitem id="menu_marca" 
+              name="Marcas" 
+              parent="menu_root" 
+              action="action_marca_product" 
+              sequence="5"/>
+
+<menuitem id="menu_product_model" 
+          name="Modelos" 
+          parent="menu_root" 
+          action="action_product_model" 
+          sequence="6"/>
+
+<menuitem id="menu_product_linea" 
+          name="Líneas" 
+          parent="menu_root" 
+          action="action_product_linea" 
+          sequence="7"/>
+
+   
+</odoo>

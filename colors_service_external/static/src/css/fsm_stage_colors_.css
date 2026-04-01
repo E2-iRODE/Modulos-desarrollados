@@ -1,0 +1,51 @@
+/* Reset (todos grises) */
+.o_statusbar_status .o_arrow_button {
+    background-color: #e9ecef !important;
+    border-color: #e9ecef !important;
+    color: #495057 !important;
+}
+
+/* Nuevo → Gris (ID 1) */
+.o_statusbar_status .o_arrow_button_current[data-value="9"] {
+    background-color: #6c757d !important;
+    border-color: #6c757d !important;
+    color: white !important;
+}
+
+/* Planeado → Amarillo (ID 28) */
+.o_statusbar_status .o_arrow_button_current[data-value="10"] {
+    background-color: #fecd37 !important;
+    border-color: #fecd37 !important;
+    color: rgb(48, 47, 47) !important;
+}
+
+/* En progreso → Naranja (ID 2) */
+.o_statusbar_status .o_arrow_button_current[data-value="11"] {
+    background-color: #fd7e14 !important;
+    border-color: #fd7e14 !important;
+    color: white !important;
+}
+
+/* Hecha → Verde (ID 3) */
+.o_statusbar_status .o_arrow_button_current[data-value="12"] {
+    background-color: #5cb85c !important;
+    border-color: #28a745 !important;
+    color: white !important;
+}
+.o_statusbar_status .o_arrow_button_current[data-value="13"] {
+    background-color: #f14e4e !important;
+    border-color: #ef4949 !important;
+    color: white !important;
+}
+.o_statusbar_status .o_arrow_button_current .ms-2.text-muted.small {
+    color: white !important;
+}
+
+
+.o_statusbar_status .o_arrow_button_current {
+    box-shadow: 0 0 10px rgba(0,0,0,0.25);
+    transform: scale(1.03);
+}
+.o_statusbar_status .o_arrow_button_current[data-value="28"] .ms-2.text-muted.small {
+    color: rgb(47, 47, 47) !important; 
+}

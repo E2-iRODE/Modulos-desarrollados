@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_product_marca_all_users,product.marca.all,model_product_marca,base.group_user,1,1,1,1
+access_product_model_all_users,product.model.all,model_product_model,base.group_user,1,1,1,1
+access_product_linea_all_users,product.linea.all,model_product_linea,base.group_user,1,1,1,1

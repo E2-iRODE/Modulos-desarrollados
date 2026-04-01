@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="product_template_form_inherit_custom" model="ir.ui.view">
+
+        <field name="name">product.template.form.custom</field>
+        <field name="model">product.template</field>
+
+        <!-- vista que heredas -->
+        <field name="inherit_id" ref="product.product_template_only_form_view"/>
+
+        <field name="arch" type="xml">
+
+<xpath expr="//div[@name='options']" position="inside">
+    <span class="d-inline-flex">
+        <field name="es_repuesto"/>
+        <label for="es_repuesto"/>
+    </span>
+</xpath>
+            <xpath expr="//field[@name='default_code']" position="after">
+
+                <field name="modelo_id"/>
+                <field name="marca_id"/>
+                <field name="linea_id"/>
+
+                
+                <field name="compatible" widget="many2many_tags" string="Producto Compatible:" invisible="not es_repuesto"/>
+                <field name="compatible_vehiculo" widget="many2many_tags" string="Vehiculo Compatible:" invisible="not es_repuesto"/>
+
+            </xpath>
+
+        </field>
+
+    </record>
+
+</odoo>
