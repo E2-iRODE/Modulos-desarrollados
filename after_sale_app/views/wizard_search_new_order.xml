@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_wizard_search_order_nueva_form" model="ir.ui.view">
+        <field name="name">wizard.search.order.nueva.form</field>
+        <field name="model">wizard.search.order.nueva</field>
+        <field name="arch" type="xml">
+            <form string="Buscar y Agregar Orden">
+                <sheet>
+                    <field name="after_sale_id" invisible="1" />
+
+                    <group col="4">
+                        <group string="Cliente" colspan="2">
+    <field name="partner_filter"
+        options="{'no_create': True, 'no_quick_create': True}" />
+</group>
+                        <group string="Rango de fechas" colspan="2">
+                            <field name="date_from" widget="date" />
+                            <field name="date_to"   widget="date" />
+                        </group>
+                        <group string="Estados" colspan="2">
+                            <field name="state_filter" />
+                            <field name="invoice_status_filter" />
+                            <field name="delivery_status_filter" />
+                        </group>
+                        <group string="Monto" colspan="2">
+                            <field name="amount_min" />
+                            <field name="amount_max" />
+                        </group>
+                    </group>
+
+                    <div style="display:flex; gap:8px; margin-bottom:16px;">
+                        <button name="action_apply_filters" string="Aplicar Filtros"
+                            type="object" class="btn btn-primary" />
+                        <button name="action_clear_filters" string="↺ Limpiar"
+                            type="object" class="btn btn-secondary" />
+                    </div>
+
+                    <separator string="Órdenes encontradas" />
+
+                    <!-- One2many de nuestro modelo liviano — no toca sale.order -->
+                    <field name="line_ids" nolabel="1">
+                        <tree decoration-info="state == 'draft'"
+                              decoration-success="state == 'sale'"
+                              decoration-muted="state == 'done'"
+                              decoration-danger="state == 'cancel'"
+                              editable="false">
+                            <field name="name"            string="Referencia" />
+                            <field name="partner_name"    string="Cliente" />
+                            <field name="date_order"      string="Fecha" />
+                            <field name="state" widget="badge" string="Estatus"
+                            
+                                decoration-info="state == 'draft'"
+                                decoration-primary="state == 'sent'"
+                                decoration-success="state == 'sale'"
+                                decoration-muted="state == 'done'"
+                                decoration-danger="state == 'cancel'" />
+                            <field name="invoice_status" widget="badge" string="Estatus Factura"
+                                decoration-success="invoice_status == 'invoiced'"
+                                decoration-warning="invoice_status == 'to invoice'"
+                                decoration-muted="invoice_status == 'no'" 
+                                 decoration-danger="invoice_status not in ('invoiced','to invoice','no')" />
+
+
+
+                            <field name="delivery_status" widget="badge" string="Estatus Pedido"
+                                decoration-info="delivery_status == 'started'"
+                                decoration-warning="delivery_status == 'pending'"
+                                decoration-success="delivery_status == 'full'" 
+                            decoration-danger="not delivery_status or delivery_status not in ('started','pending','full')" />
+
+                                
+                            <field name="currency_id" column_invisible="True" />
+                            <field name="amount_total" string="Total"
+                                widget="monetary"
+                                options="{'currency_field': 'currency_id'}" />
+                         
+                           <button name="action_select_line"
+    string="Agregar"
+    type="object"
+    icon="fa-plus"
+    class="btn btn-sm btn-success" />
+                        </tree>
+                    </field>
+
+                </sheet>
+                <footer>
+                    <button string="Cerrar" class="btn btn-secondary" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>

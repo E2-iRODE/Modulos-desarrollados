@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_after_sale_user,after.sale.user,model_after_sale,base.group_user,1,1,1,1
+access_wizard_search_order_user,wizard.search.order.user,model_wizard_search_order,base.group_user,1,1,1,1
+access_wizard_search_order_line_user,wizard.search.order.line.user,model_wizard_search_order_line,base.group_user,1,1,1,1
+access_wizard_search_order_nueva_user,wizard.search.order.nueva.user,model_wizard_search_order_nueva,base.group_user,1,1,1,1
+access_wizard_order_line_user,wizard.order.line.user,model_wizard_order_line,base.group_user,1,1,1,1
+access_after_sale_line_lote_user,after.sale.line.lote.user,model_after_sale_line_lote,base.group_user,1,1,1,1
